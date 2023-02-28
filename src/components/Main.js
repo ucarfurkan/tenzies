@@ -5,12 +5,13 @@ import { nanoid } from 'nanoid'
 function Main() {
 
     const [dices, setDices] = useState(newAllDices());
+    const [tenzies,setTenzies] = useState(false);
 
     useEffect(() => {
         const isDicesHeld = dices.map((dice) => dice.isHeld).every((held) => held);
         const isValuesEqual = dices.map((dice) => dice.value === dices[0].value).every((held) => held);
         if(isDicesHeld && isValuesEqual){
-            console.log("You won!")
+            setTenzies(true);
         }
         
     },[dices])
@@ -49,6 +50,11 @@ function Main() {
             return x.isHeld === true ? x : generateNewDice()
         }))
     }
+    
+    function resetTheGame(){
+        setTenzies(false);
+        setDices(newAllDices());
+    }
 
     return (
         <main className='container d-flex justify-content-center'>
@@ -56,7 +62,8 @@ function Main() {
                 {getDices}
             </div>
             <div>
-                <button onClick={roll} className='btn btn-roll mb-5'>Roll</button>
+                {!tenzies && <button onClick={roll} className='btn btn-roll mb-5'>Roll</button>}
+                {tenzies && <button onClick={resetTheGame} className='btn btn-roll mb-5'>Reset the Game</button>}
             </div>
         </main>
     )
