@@ -1,20 +1,22 @@
 import Dice from './Dice';
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid'
+import Counter from './Counter'
 
 function Main() {
 
     const [dices, setDices] = useState(newAllDices());
-    const [tenzies,setTenzies] = useState(false);
+    const [tenzies, setTenzies] = useState(false);
+    const [numOfMove, setNumOfMove] = useState(0);
 
     useEffect(() => {
         const isDicesHeld = dices.map((dice) => dice.isHeld).every((held) => held);
         const isValuesEqual = dices.map((dice) => dice.value === dices[0].value).every((held) => held);
-        if(isDicesHeld && isValuesEqual){
+        if (isDicesHeld && isValuesEqual) {
             setTenzies(true);
         }
-        
-    },[dices])
+
+    }, [dices])
 
     const getDices = dices.map(x => (
         <Dice
@@ -50,10 +52,15 @@ function Main() {
             return x.isHeld === true ? x : generateNewDice()
         }))
     }
-    
-    function resetTheGame(){
+
+    function resetTheGame() {
         setTenzies(false);
         setDices(newAllDices());
+        setNumOfMove(0)
+    }
+
+    function count(){
+        setNumOfMove(prev => prev+1)
     }
 
     return (
@@ -61,9 +68,28 @@ function Main() {
             <div className='dice-container m-5'>
                 {getDices}
             </div>
-            <div>
-                {!tenzies && <button onClick={roll} className='btn btn-roll mb-5'>Roll</button>}
-                {tenzies && <button onClick={resetTheGame} className='btn btn-roll mb-5'>Reset the Game</button>}
+            <div className='d-flex justify-content-center align-items-center mb-3'>
+                {!tenzies &&
+                    <button
+                        onClick={() => {
+                            roll();
+                            count();
+                        }}
+                        className='btn btn-roll'>
+                        Roll
+                    </button>}
+                {tenzies && <button onClick={resetTheGame} className='btn btn-roll'>Reset the Game</button>}
+            </div>
+            <div className='w-100 d-flex justify-content-around mb-4'>
+                <Counter count= {numOfMove} />
+                <div className='num-of-move align-items-center'>
+                    <div className='number-of d-flex justify-content-center align-items-center'>
+                        Time
+                    </div>
+                    <div className='number d-flex justify-content-center align-items-center'>
+                        <span></span>
+                    </div>
+                </div>
             </div>
         </main>
     )

@@ -38,3 +38,37 @@ main{
     height: 5rem;
     font-size: 1.7rem;
 }
+
+.num-of-move{
+    display: flex;
+    flex-direction: column;
+}
+
+.num-of-move > div{
+    text-align: center;
+    margin: 0 !important;
+    color: #fff;
+}
+
+.number-of{
+    font-size: 1.5rem;
+}
+
+.move{
+    font-size: 1.7rem;
+}
+
+.number{
+    width: 7rem;
+    height: 7rem;
+    background-color: #f39c12;
+    padding: 2rem;
+    margin: 0.1rem;
+    color: #000;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000;
+    font-size: 2.5rem;
+    box-sizing: border-box;
+}
