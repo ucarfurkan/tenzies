@@ -36,7 +36,9 @@ function Main() {
     }
 
     function roll() {
-        setDices(newAllDices())
+        setDices(oldDices => oldDices.map(x => {
+            return x.isHeld === true ? x : generateNewDice()
+        }))
     }
 
     return (
