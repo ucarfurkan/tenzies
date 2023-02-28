@@ -4,15 +4,15 @@ import { nanoid } from 'nanoid'
 import Counter from './Counter'
 import Stopwatch from './Stopwatch';
 import RollButton from './RollButton';
+import Confetti from 'react-confetti'
 
 function Main() {
-
     const [dices, setDices] = useState(newAllDices());
     const [tenzies, setTenzies] = useState(false);
     const [numOfMove, setNumOfMove] = useState(0);
     const [time, setTime] = useState(0);
     const [running, setRunning] = useState(false);
-
+    const [showConfetti, setShowConfetti] = useState(false); // New state variable
     useEffect(() => {
         let interval;
         if (running) {
@@ -31,6 +31,7 @@ function Main() {
         if (isDicesHeld && isValuesEqual) {
             setTenzies(true);
             setRunning(false);
+            setShowConfetti(true); // Set showConfetti to true
         }
 
     }, [dices])
@@ -76,6 +77,7 @@ function Main() {
         setDices(newAllDices());
         setNumOfMove(0);
         setTime(0);
+        setShowConfetti(false); // Set showConfetti to false
     }
 
     function count() {
@@ -90,6 +92,7 @@ function Main() {
             <div className='dice-container m-5'>
                 {getDices}
             </div>
+            {showConfetti && <Confetti/>}
             <RollButton
                 startStopWatch={startStopWatch}
                 count={count}
