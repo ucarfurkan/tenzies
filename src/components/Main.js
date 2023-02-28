@@ -89,10 +89,18 @@ function Main() {
     }
     return (
         <main className='container d-flex justify-content-center'>
-            <div className='dice-container m-5'>
+            <div className="desc mt-2">
+                <h2 className="desc-header">How to Play Tenzies</h2>
+                <p>Tenzies is a dice game, the goal of the game is to roll all 10 dice with the same number.</p>
+                <p>To play, simply click on any dice you want to hold and then click the "Roll" button to roll the remaining dice.</p>
+                <p>If all 10 dice show the same number, you win!</p>
+                <p>Have fun!</p>
+            </div>
+
+            <div className='dice-container m-3'>
                 {getDices}
             </div>
-            {showConfetti && <Confetti/>}
+            {showConfetti && <Confetti />}
             <RollButton
                 startStopWatch={startStopWatch}
                 count={count}
