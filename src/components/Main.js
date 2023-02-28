@@ -6,6 +6,15 @@ function Main() {
 
     const [dices, setDices] = useState(newAllDices());
 
+    useEffect(() => {
+        const isDicesHeld = dices.map((dice) => dice.isHeld).every((held) => held);
+        const isValuesEqual = dices.map((dice) => dice.value === dices[0].value).every((held) => held);
+        if(isDicesHeld && isValuesEqual){
+            console.log("You won!")
+        }
+        
+    },[dices])
+
     const getDices = dices.map(x => (
         <Dice
             key={x.id}
