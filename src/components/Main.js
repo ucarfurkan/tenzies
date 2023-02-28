@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid'
 import Counter from './Counter'
 import Stopwatch from './Stopwatch';
+import RollButton from './RollButton';
 
 function Main() {
 
@@ -77,32 +78,30 @@ function Main() {
         setTime(0);
     }
 
-    function count(){
-        setNumOfMove(prev => prev+1)
+    function count() {
+        setNumOfMove(prev => prev + 1)
     }
 
+    function startStopWatch() {
+        setRunning(true);
+    }
     return (
         <main className='container d-flex justify-content-center'>
             <div className='dice-container m-5'>
                 {getDices}
             </div>
-            <div className='d-flex justify-content-center align-items-center mb-3'>
-                {!tenzies &&
-                    <button
-                        onClick={() => {
-                            roll();
-                            count();
-                        }}
-                        className='btn btn-roll'>
-                        Roll
-                    </button>}
-                {tenzies && <button onClick={resetTheGame} className='btn btn-roll'>Reset the Game</button>}
-            </div>
+            <RollButton
+                startStopWatch={startStopWatch}
+                count={count}
+                roll={roll}
+                resetTheGame={resetTheGame}
+                tenzies={tenzies}
+            />
             <div className='w-100 d-flex justify-content-around mb-4'>
-                <Counter count= {numOfMove} />
-                <Stopwatch time= {time} setRunning={setRunning} />
+                <Counter count={numOfMove} />
+                <Stopwatch time={time} setRunning={setRunning} />
             </div>
-            
+
         </main>
     )
 
