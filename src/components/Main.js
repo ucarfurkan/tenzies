@@ -8,11 +8,18 @@ function Main() {
 
     const getDices = dices.map(x => (
         <Dice
-            value={x.value}
             key={x.id}
+            value={x.value}
             isHeld={x.isHeld}
+            toggle={() => toggleDice(x.id)}
         />
     ))
+
+    function toggleDice(id) {
+        setDices(oldDices => oldDices.map(x => {
+            return x.id === id ? { ...x, isHeld: !x.isHeld } : x
+        }))
+    }
 
     function generateNewDice() {
         const value = Math.floor(Math.random() * 6 + 1)
@@ -28,10 +35,17 @@ function Main() {
         return dices;
     }
 
+    function roll() {
+        setDices(newAllDices())
+    }
+
     return (
         <main className='container d-flex justify-content-center'>
             <div className='dice-container m-5'>
                 {getDices}
+            </div>
+            <div>
+                <button onClick={roll} className='btn btn-roll mb-5'>Roll</button>
             </div>
         </main>
     )
