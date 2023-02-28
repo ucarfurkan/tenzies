@@ -1,8 +1,8 @@
-body{
+body {
     font-family: 'Montserrat', sans-serif;
 }
 
-main{
+main {
     background-color: #2c3e50;
     display: flex;
     flex-direction: column;
@@ -16,7 +16,11 @@ main{
     margin-bottom: 40px;
 }
 
-.dice{
+.dice {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     width: 7rem;
     height: 7rem;
     background-color: #ecf0f1;
@@ -31,7 +35,7 @@ main{
     box-sizing: border-box;
 }
 
-.btn-roll{
+.btn-roll {
     color: #fff;
     background-color: #2980b9;
     width: 25rem;
@@ -39,29 +43,27 @@ main{
     font-size: 1.7rem;
 }
 
-.num-of-move{
+.num-of-move {
     display: flex;
     flex-direction: column;
 }
 
-.num-of-move > div{
+.num-of-move>div {
     text-align: center;
     margin: 0 !important;
     color: #fff;
 }
 
-.number-of{
+.number-of {
     font-size: 1.5rem;
 }
 
-.move{
+.move {
     font-size: 1.7rem;
 }
 
-.number{
-    width: 7rem;
+.square {
     height: 7rem;
-    background-color: #f39c12;
     padding: 2rem;
     margin: 0.1rem;
     color: #000;
@@ -71,4 +73,14 @@ main{
     border-color: #000;
     font-size: 2.5rem;
     box-sizing: border-box;
+}
+
+.time {
+    width: 10rem;
+    background-color: #f368e0;
+}
+
+.number {
+    width: 7rem;
+    background-color: #f39c12;
 }

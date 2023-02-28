@@ -2,18 +2,34 @@ import Dice from './Dice';
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid'
 import Counter from './Counter'
+import Stopwatch from './Stopwatch';
 
 function Main() {
 
     const [dices, setDices] = useState(newAllDices());
     const [tenzies, setTenzies] = useState(false);
     const [numOfMove, setNumOfMove] = useState(0);
+    const [time, setTime] = useState(0);
+    const [running, setRunning] = useState(false);
+
+    useEffect(() => {
+        let interval;
+        if (running) {
+            interval = setInterval(() => {
+                setTime((prevTime) => prevTime + 10);
+            }, 10);
+        } else if (!running) {
+            clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    }, [running]);
 
     useEffect(() => {
         const isDicesHeld = dices.map((dice) => dice.isHeld).every((held) => held);
         const isValuesEqual = dices.map((dice) => dice.value === dices[0].value).every((held) => held);
         if (isDicesHeld && isValuesEqual) {
             setTenzies(true);
+            setRunning(false);
         }
 
     }, [dices])
@@ -31,6 +47,7 @@ function Main() {
         setDices(oldDices => oldDices.map(x => {
             return x.id === id ? { ...x, isHeld: !x.isHeld } : x
         }))
+        setRunning(true);
     }
 
     function generateNewDice() {
@@ -56,7 +73,8 @@ function Main() {
     function resetTheGame() {
         setTenzies(false);
         setDices(newAllDices());
-        setNumOfMove(0)
+        setNumOfMove(0);
+        setTime(0);
     }
 
     function count(){
@@ -82,15 +100,9 @@ function Main() {
             </div>
             <div className='w-100 d-flex justify-content-around mb-4'>
                 <Counter count= {numOfMove} />
-                <div className='num-of-move align-items-center'>
-                    <div className='number-of d-flex justify-content-center align-items-center'>
-                        Time
-                    </div>
-                    <div className='number d-flex justify-content-center align-items-center'>
-                        <span></span>
-                    </div>
-                </div>
+                <Stopwatch time= {time} setRunning={setRunning} />
             </div>
+            
         </main>
     )
 
