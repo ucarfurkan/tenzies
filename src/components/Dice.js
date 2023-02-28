@@ -1,6 +1,6 @@
 function Dice(){
     return(
-        <div className="dice justify-content-center d-flex align-items-center"></div>
+        <div className="dice justify-content-center d-flex align-items-center col-2"></div>
     )
 }
 

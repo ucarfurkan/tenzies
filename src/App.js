@@ -1,10 +1,10 @@
 import './App.css';
-import Dice from './components/Dice'
+import Main from './components/Main'
 
 function App() {
   return (
     <div className="app">
-        <Dice />
+        <Main />
     </div>
   );
 }
