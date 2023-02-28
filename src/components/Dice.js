@@ -1,6 +1,6 @@
-function Dice(){
+function Dice(props){
     return(
-        <div className="dice justify-content-center d-flex align-items-center col-2"></div>
+        <div className="dice justify-content-center d-flex align-items-center">{props.value}</div>
     )
 }
 
