@@ -2,7 +2,7 @@ function Counter(props) {
     return (
         <div className='num-of-move align-items-center'>
             <div className='number-of d-flex justify-content-center align-items-center'>
-                Number of Move
+                Move
             </div>
             <div className='square number d-flex justify-content-center align-items-center'>
                 <span>{props.count}</span>

@@ -105,3 +105,39 @@ main {
     line-height: 1.5;
     margin-bottom: 10px;
 }
+
+@media(max-width: 576px){
+    .dice {
+        width: 3.5rem;
+        height: 3.5rem;
+        padding: 1rem;
+        margin: 0.1rem;
+        font-size: 1.5rem;
+    }
+    .btn-roll {
+        width: 100%;
+        height: 4rem;
+        font-size: 1.5rem;
+    }
+    .square {
+        height: 3rem;
+        padding: 2rem;
+        margin: 0.1rem;
+        font-size: 1.5rem;
+    }
+    .time {
+        width: 6rem;
+        background-color: #f368e0;
+    }
+    
+    .number {
+        width: 3rem;
+        background-color: #f39c12;
+    }
+}
+
+ @media (min-width: 992px) { 
+    body {
+        
+    }
+ }
