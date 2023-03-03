@@ -107,6 +107,13 @@ main {
 }
 
 @media(max-width: 576px){
+    .dice-container {
+        display: grid;
+        grid-template: auto auto / repeat(5, 1fr);
+        gap: .25rem;
+        margin-bottom: 1rem;
+    }
+    
     .dice {
         width: 3.5rem;
         height: 3.5rem;
